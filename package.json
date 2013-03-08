@@ -1,0 +1,29 @@
+{
+  "name": "omit",
+  "description": "Efficient ommission of object keys",
+  "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
+  "tags": [
+    "filter",
+    "omit"
+  ],
+  "version": "0.0.0",
+  "engines": {
+    "node": ">= 0.6.x < 0.9.0"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "mocha": "1.8.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/DamonOehlman/omit.git"
+  },
+  "bugs": {
+    "url": "http://github.com/DamonOehlman/omit/issues"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec -t 2s"
+  },
+  "contributors": []
+}
