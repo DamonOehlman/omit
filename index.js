@@ -7,6 +7,7 @@ function omit(input, entries) {
         reject,
         value,
         entry,
+        entryCount,
         testObject,
         newObject;
 
@@ -17,6 +18,9 @@ function omit(input, entries) {
 
     // ensure entries is an array
     entries = [].concat(entries || []).concat(Array.prototype.slice.call(arguments, 2));
+
+    // initialise the entry count
+    entryCount = entries.length;
 
     // iterate through the elements in the data and 
     for (itemIdx = input.length; itemIdx--; ) {
@@ -31,7 +35,7 @@ function omit(input, entries) {
                 reject = false;
 
                 // iterate through the entry tests
-                for (entryIdx = entries.length; (! reject) && entryIdx--; ) {
+                for (entryIdx = 0; (! reject) && entryIdx < entryCount; entryIdx++) {
                     entry = entries[entryIdx];
 
                     // if the entry is a string, then omit only if we have a key match
