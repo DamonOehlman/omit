@@ -11,8 +11,10 @@ function omit(input, entries) {
         testObject,
         newObject;
 
-    // if we have no input, return it directory as output
-    if (! input) return input;
+    // if the input is not an object, then simply passthrough
+    if (typeof input != 'object' || (input instanceof String)) {
+        return input;
+    }
 
     // if the data is not an array, then wrap in an array for consistent treatment
     if (notArray) {
