@@ -2,10 +2,18 @@ var assert = require('assert'),
     omit = require('../'),
     sample = require('./sampledata/tolkien.json');
 
-describe('simple key based ommission', function() {
+function removeCreated(key, value, obj) {
+    return key === 'created';
+}
+
+function removeLastModified(key, value, object) {
+    return key === 'last_modified';
+}
+
+describe('evaluator based ommission', function() {
     describe('array data', function() {
         it('should be able to remove details based on key name', function() {
-            var entries = omit(sample.entries, 'created');
+            var entries = omit(sample.entries, removeCreated);
 
             // iterate through the entries, and validate that no created by values slipped through
             entries.forEach(function(entry) {
@@ -14,7 +22,7 @@ describe('simple key based ommission', function() {
         });
 
         it('should be able to remove two keys', function() {
-            var entries = omit(sample.entries, ['created', 'last_modified']);
+            var entries = omit(sample.entries, [removeCreated, removeLastModified]);
 
             // iterate through the entries, and validate that no created by values slipped through
             entries.forEach(function(entry) {
@@ -24,7 +32,7 @@ describe('simple key based ommission', function() {
         });
 
         it('should be able to remove two keys (varargs variant)', function() {
-            var entries = omit(sample.entries, 'created', 'last_modified');
+            var entries = omit(sample.entries, removeCreated, removeLastModified);
 
             // iterate through the entries, and validate that no created by values slipped through
             entries.forEach(function(entry) {
@@ -36,14 +44,14 @@ describe('simple key based ommission', function() {
 
     describe('standalone object', function() {
         it('should be able to remove details based on key name', function() {
-            var entry = omit(sample.entries[0], 'created');
+            var entry = omit(sample.entries[0], removeCreated);
 
             // iterate through the entries, and validate that no created by values slipped through
             assert(! entry.created, 'Entry has created information');
         });
 
         it('should be able to remove two keys', function() {
-            var entry = omit(sample.entries[0], ['created', 'last_modified']);
+            var entry = omit(sample.entries[0], [removeCreated, removeLastModified]);
 
             // iterate through the entries, and validate that no created by values slipped through
             assert(! entry.created, 'Entry has created information');
@@ -51,7 +59,7 @@ describe('simple key based ommission', function() {
         });
 
         it('should be able to remove two keys (varargs variant)', function() {
-            var entry = omit(sample.entries[0], 'created', 'last_modified');
+            var entry = omit(sample.entries[0], removeCreated, removeLastModified);
 
             // iterate through the entries, and validate that no created by values slipped through
             assert(! entry.created, 'Entry has created information');

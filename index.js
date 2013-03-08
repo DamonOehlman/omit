@@ -16,7 +16,7 @@ function omit(input, entries) {
     }
 
     // ensure entries is an array
-    entries = [].concat(entries || []);
+    entries = [].concat(entries || []).concat(Array.prototype.slice.call(arguments, 2));
 
     // iterate through the elements in the data and 
     for (itemIdx = input.length; itemIdx--; ) {
@@ -38,6 +38,16 @@ function omit(input, entries) {
                     switch (typeof entry) {
                         case 'function':
                             reject = entry(key, value, testObject);
+
+                            // check for value updates
+                            if (typeof reject == 'object' && typeof reject.newValue != 'undefined') {
+                                value = reject.newValue;
+                                reject = false;
+                            }
+
+                            // ensure reject is a boolean value
+                            reject = reject === true;
+
                             break;
 
                         case 'string':

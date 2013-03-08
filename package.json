@@ -1,6 +1,6 @@
 {
   "name": "omit",
-  "description": "Efficient ommission of object keys",
+  "description": "Efficient ommission of object data based on keys, values and evaluator functions",
   "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
   "tags": [
     "filter",
