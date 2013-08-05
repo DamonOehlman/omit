@@ -1,18 +1,10 @@
 {
   "name": "omit",
   "description": "Efficient ommission of object data based on keys, values and evaluator functions",
-  "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
-  "tags": [
-    "filter",
-    "omit"
-  ],
+  "author": "Damon Oehlman <damon.oehlman@gmail.com>",
   "version": "0.1.3",
-  "engines": {
-    "node": ">= 0.6.x < 0.9.0"
-  },
-  "dependencies": {},
   "devDependencies": {
-    "mocha": "1.8.x"
+    "mocha": "~1.12.0"
   },
   "repository": {
     "type": "git",
@@ -22,7 +14,12 @@
     "url": "http://github.com/DamonOehlman/omit/issues"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha --reporter spec -t 2s"
+    "test": "$(npm bin)/mocha --reporter spec -t 2s"
   },
-  "contributors": []
+  "main": "index.js",
+  "keywords": [
+    "filter",
+    "omit"
+  ],
+  "license": "MIT"
 }
