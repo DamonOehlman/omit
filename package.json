@@ -8,10 +8,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/DamonOehlman/omit.git"
+    "url": "https://bitbucket.org/DamonOehlman/omit.git"
   },
   "bugs": {
-    "url": "http://github.com/DamonOehlman/omit/issues"
+    "url": "https://bitbucket.org/DamonOehlman/omit/issues"
   },
   "scripts": {
     "test": "$(npm bin)/mocha --reporter spec -t 2s"
