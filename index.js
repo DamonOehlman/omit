@@ -9,82 +9,60 @@
   <<< examples/object.js
 
 **/
-module.exports = function(input, entries) {
-  var notArray = !Array.isArray(input);
-  var output = [];
-  var itemIdx;
-  var entryIdx;
-  var key;
-  var reject;
-  var value;
-  var entry;
-  var entryCount;
-  var testObject;
-  var newObject;
+module.exports = function(rule) {
 
-  // if the input is not an object, then simply passthrough
-  if (typeof input != 'object' || (input instanceof String)) {
-    return input;
-  }
+  function omit(target) {
+    var acceptVal;
+    var copy = {};
+    var key;
+    var val;
 
-  // if the data is not an array, then wrap in an array for consistent treatment
-  if (notArray) {
-    input = [input];
-  }
+    if (Array.isArray(target)) {
+      return target.map(omit);
+    }
 
-  // ensure entries is an array
-  entries = [].concat(entries || [])
-    .concat(Array.prototype.slice.call(arguments, 2));
+    for (var key in target) {
+      if (target.hasOwnProperty(key)) {
+        // if we don't have a valid rule, just accept the value
+        acceptVal = typeof rule != 'function';
 
-  // initialise the entry count
-  entryCount = entries.length;
-
-  // iterate through the elements in the data and
-  for (itemIdx = input.length; itemIdx--; ) {
-    // initialise the test object and new object
-    testObject = input[itemIdx];
-    newObject = output[itemIdx] = {};
-
-    // iterate through the keys in the object
-    for (key in testObject) {
-      if (testObject.hasOwnProperty(key)) {
-        value = testObject[key];
-        reject = false;
-
-        // iterate through the entry tests
-        for (entryIdx = 0; (! reject) && entryIdx < entryCount; entryIdx++) {
-          entry = entries[entryIdx];
-
-          // if the entry is a string, then omit only if we have a key match
-          switch (typeof entry) {
-          case 'function':
-            reject = entry(key, value, testObject);
-
-            // check for value updates
-            if (typeof reject == 'object' &&
-              typeof reject.newValue != 'undefined') {
-              value = reject.newValue;
-              reject = false;
-            }
-
-            // ensure reject is a boolean value
-            reject = reject === true;
-
-            break;
-
-          case 'string':
-            reject = key === entry;
-            break;
-          }
+        // if we only have a key check, then do a very simple test
+        if (rule.length === 1) {
+          acceptVal = !rule(key);
+        }
+        else {
+          val = target[key];
+          acceptVal = !rule(key, val = target[key], target);
         }
 
-        // if we are not rejecting the key, then add the value to the new object
-        if (! reject) {
-          newObject[key] = value;
+        if (acceptVal) {
+          copy[key] = val || target[key];
         }
       }
     }
+
+    return copy;
   }
 
-  return notArray ? output[0] : output;
+  function omitWhenEqual(value) {
+    return function(key) {
+      return key === value;
+    };
+  }
+
+  function omitWhenIn(target) {
+    return function(key) {
+      return target.indexOf(key) >= 0;
+    };
+  }
+
+  if (typeof rule == 'string' || (rule instanceof String)) {
+    rule = omitWhenEqual(rule);
+  }
+
+  if (Array.isArray(rule)) {
+    rule = omitWhenIn(rule);
+  }
+
+  return arguments[1] !== undefined ? omit(arguments[1]) : omit;
 };
