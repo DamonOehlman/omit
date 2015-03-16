@@ -14,7 +14,8 @@
     "url": "http://github.com/DamonOehlman/omit/issues"
   },
   "scripts": {
-    "test": "mocha --reporter spec -t 2s"
+    "test": "mocha --reporter spec -t 2s",
+    "gendocs": "gendocs > README.md"
   },
   "main": "index.js",
   "keywords": [
