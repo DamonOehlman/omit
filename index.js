@@ -1,6 +1,14 @@
-/* jshint node: true */
-'use strict';
+/**
+  # omit
 
+  Remove values from an object (or an array of objects) based on key, value or
+  an evaluator function.
+
+  ## Example Usage
+
+  <<< examples/object.js
+
+**/
 module.exports = function(input, entries) {
   var notArray = !Array.isArray(input);
   var output = [];
@@ -31,7 +39,7 @@ module.exports = function(input, entries) {
   // initialise the entry count
   entryCount = entries.length;
 
-  // iterate through the elements in the data and 
+  // iterate through the elements in the data and
   for (itemIdx = input.length; itemIdx--; ) {
     // initialise the test object and new object
     testObject = input[itemIdx];
