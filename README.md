@@ -6,7 +6,7 @@ an evaluator function.
 
 [![NPM](https://nodei.co/npm/omit.png)](https://nodei.co/npm/omit/)
 
-
+[![Build Status](https://img.shields.io/travis/DamonOehlman/omit.svg?branch=master)](https://travis-ci.org/DamonOehlman/omit) 
 
 ## Example Usage
 
