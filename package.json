@@ -14,7 +14,7 @@
     "url": "http://github.com/DamonOehlman/omit/issues"
   },
   "scripts": {
-    "test": "$(npm bin)/mocha --reporter spec -t 2s"
+    "test": "mocha --reporter spec -t 2s"
   },
   "main": "index.js",
   "keywords": [
