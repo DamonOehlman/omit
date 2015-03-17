@@ -17,6 +17,11 @@ module.exports = function(rule) {
     var key;
     var val;
 
+    // in the case that we have been passed a falsey value, just return that
+    if (! target) {
+      return target;
+    }
+
     if (Array.isArray(target)) {
       return target.map(omit);
     }
