@@ -2,7 +2,7 @@
   "name": "omit",
   "description": "Efficient ommission of object data based on keys, values and evaluator functions",
   "author": "Damon Oehlman <damon.oehlman@gmail.com>",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "devDependencies": {
     "mocha": "^2.2.1"
   },
