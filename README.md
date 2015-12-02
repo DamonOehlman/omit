@@ -17,7 +17,12 @@ var REJECTED_KEYS = ['authors', 'created', 'last_modified'];
 
 // log an array of the entries with the authors and created keys omitted
 console.log(books.entries.map(omit(REJECTED_KEYS)));
+```
 
+```js
+var someObject = {id: 101, color: 'blue'};
+// log the object with the id key omitted
+console.log(omit(['id'], someObject));
 ```
 
 ## License(s)
