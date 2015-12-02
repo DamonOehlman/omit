@@ -6,9 +6,21 @@ an evaluator function.
 
 [![NPM](https://nodei.co/npm/omit.png)](https://nodei.co/npm/omit/)
 
-[![Build Status](https://img.shields.io/travis/DamonOehlman/omit.svg?branch=master)](https://travis-ci.org/DamonOehlman/omit) 
+[![Build Status](https://api.travis-ci.org/DamonOehlman/omit.svg?branch=master)](https://travis-ci.org/DamonOehlman/omit) [![bitHound Score](https://www.bithound.io/github/DamonOehlman/omit/badges/score.svg)](https://www.bithound.io/github/DamonOehlman/omit) 
 
 ## Example Usage
+
+Shown below is a simple example of how to omit a particular key from an object:
+
+```js
+var omit = require('omit');
+var someObject = {id: 101, color: 'blue'};
+
+console.log(omit(['id'], someObject));
+```
+
+Our next example demonstrates how `omit` supports partial execution and can be
+used to map over an array and strip keys out of objects in that array:
 
 ```js
 var books = require('omit/test/sampledata/tolkien.json');
@@ -17,12 +29,7 @@ var REJECTED_KEYS = ['authors', 'created', 'last_modified'];
 
 // log an array of the entries with the authors and created keys omitted
 console.log(books.entries.map(omit(REJECTED_KEYS)));
-```
 
-```js
-var someObject = {id: 101, color: 'blue'};
-// log the object with the id key omitted
-console.log(omit(['id'], someObject));
 ```
 
 ## License(s)

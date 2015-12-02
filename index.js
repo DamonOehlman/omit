@@ -5,6 +5,13 @@
   an evaluator function.
 
   ## Example Usage
+  
+  Shown below is a simple example of how to omit a particular key from an object:
+  
+  <<< examples/simple.js
+  
+  Our next example demonstrates how `omit` supports partial execution and can be
+  used to map over an array and strip keys out of objects in that array:
 
   <<< examples/object.js
 
